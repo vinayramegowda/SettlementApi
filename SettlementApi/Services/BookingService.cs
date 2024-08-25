@@ -9,10 +9,12 @@ public class BookingService(IBookingRepository bookingRepository) : IBookingServ
 
     public Result<bool> IsTimeValid(string time)
     {
-        _ = TimeSpan.TryParse(time, out var bookingTime);
-
-        var result = _bookingRepository.IsTimeValid(bookingTime);
-        return result ? Result<bool>.SuccessResult(result) : Result<bool>.Failure("Booking is out of business hours.");
+        if(TimeSpan.TryParse(time, out var bookingTime))
+        {
+            var result = _bookingRepository.IsTimeValid(bookingTime);
+            return result ? Result<bool>.SuccessResult(result) : Result<bool>.Failure("Booking is out of business hours.");
+        }
+        return Result<bool>.Failure("Invalid time format.");
     }
 
     public Result<bool> CanBook(string time)

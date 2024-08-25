@@ -17,9 +17,9 @@ The request should be in JSON format:
 ```json
 {
   "bookingTime": "09:30",
-  "name": "John Smith"
+  "name": "Cristiano Ronaldo"
 }
-
+```
 
 ### Usage
 ### Example Request
@@ -30,6 +30,7 @@ To make a booking, send a POST request to the API endpoint with the required dat
 curl -X POST http://localhost:44352/api/bookings \
 -H "Content-Type: application/json" \
 -d '{"bookingTime": "10:30", "name": "Cristiano Ronaldo"}'
+```
 
 ### Example Response
 
@@ -37,6 +38,7 @@ curl -X POST http://localhost:44352/api/bookings \
 {
     "bookingId": "a1222222-89av-fgfg-1234-56789abcdef0"
 }
+```
 
 ### Notes
 

@@ -1,3 +1,6 @@
+using Microsoft.Extensions.Configuration;
+using Microsoft.Extensions.DependencyInjection;
+using SettlementApi.Configurations;
 using SettlementApi.DataRepositories;
 using SettlementApi.Services;
 using System.Text.Json;
@@ -10,7 +13,8 @@ builder.Services
     {
         options.JsonSerializerOptions.PropertyNamingPolicy = JsonNamingPolicy.CamelCase;
         options.JsonSerializerOptions.PropertyNameCaseInsensitive = true;
-    }); 
+    });
+builder.Services.Configure<BookingConfiguration>(builder.Configuration.GetSection(nameof(BookingConfiguration)));
 builder.Services.AddSingleton<IBookingRepository, BookingRepository>();
 builder.Services.AddSingleton<IBookingService, BookingService>();
 builder.Services.AddLogging();

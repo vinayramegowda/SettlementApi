@@ -1,40 +1,37 @@
-﻿using SettlementApi.Models;
+﻿using Microsoft.Extensions.Options;
+using SettlementApi.Configurations;
+using SettlementApi.Models;
 
 namespace SettlementApi.DataRepositories;
 
 public class BookingRepository : IBookingRepository
 {
-    private const int MaxSimultaneousBookings = 4;
-    private readonly TimeSpan StartTime;
-    private readonly TimeSpan EndTime;
-    private const int BookingDurationMinutes = 59;
-
+    private readonly BookingConfiguration _bookingConfiguration;
     private readonly List<Booking> _bookings = [];
 
-    public BookingRepository()
+    public BookingRepository(IOptions<BookingConfiguration> options)
     {
-        StartTime = new(9, 0, 0);
-        EndTime = new(16, 59, 0);
+        _bookingConfiguration = options.Value;
     }
 
     public bool IsTimeValid(TimeSpan time)
     {
-        return time >= StartTime && time.Add(TimeSpan.FromMinutes(BookingDurationMinutes)) <= EndTime;
+        return time >= _bookingConfiguration.StartTime && time.Add(TimeSpan.FromMinutes(_bookingConfiguration.BookingDurationMinutes)) <= _bookingConfiguration.EndTime;
     }
 
     public bool CanBook(TimeSpan time)
     {
         var now = DateTime.Today.Add(time);
-        var endTime = now.AddMinutes(BookingDurationMinutes);
+        var endTime = now.AddMinutes(_bookingConfiguration.BookingDurationMinutes);
 
         // Check if there are overlapping bookings
-        return _bookings.Count(b => (b.StartTime < endTime && b.EndTime > now)) < MaxSimultaneousBookings;
+        return _bookings.Count(b => (b.StartTime < endTime && b.EndTime > now)) < _bookingConfiguration.MaxSimultaneousBookings;
     }
 
     public string BookTime(TimeSpan time, string name)
     {
         var now = DateTime.Today.Add(time);
-        var endTime = now.AddMinutes(BookingDurationMinutes);
+        var endTime = now.AddMinutes(_bookingConfiguration.BookingDurationMinutes);
 
         if (!IsTimeValid(time))
         {

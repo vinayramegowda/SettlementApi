@@ -1,15 +1,30 @@
+using Microsoft.Extensions.Options;
+using Moq;
+using SettlementApi.Configurations;
 using SettlementApi.DataRepositories;
 
 namespace SettlementApi.Tests.UnitTests.DataRepositories;
 
 public class BookingRepositoryTests
 {
-    private BookingRepository CreateRepository => new();
+    private readonly Mock<IOptions<BookingConfiguration>> _mockOptions;
+    public BookingRepositoryTests()
+    {
+        _mockOptions = new Mock<IOptions<BookingConfiguration>>();
+        _mockOptions.Setup(x => x.Value).Returns(new BookingConfiguration
+        {
+            MaxSimultaneousBookings = 4,
+            BookingDurationMinutes = 59,
+            StartTime = new(9, 0, 0),
+            EndTime = new(16, 59, 0)
+        });
+    }
+    private BookingRepository CreateRepository => new(_mockOptions.Object);
     private BookingRepository CreateRepositoryWithSampleValues
     {
         get
         {
-            var repository = new BookingRepository();
+            var repository = new BookingRepository(_mockOptions.Object);
             for (int i = 0; i < 4; i++)
             {
                 repository.BookTime(new TimeSpan(10, 0, 0), $"Cristiano {i}");

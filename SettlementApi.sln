@@ -5,6 +5,8 @@ VisualStudioVersion = 17.11.35219.272
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SettlementApi", "SettlementApi\SettlementApi.csproj", "{5264C648-4797-44E6-923E-9FF51483079D}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SettlementApi.Tests", "SettlementApi.Tests\SettlementApi.Tests.csproj", "{B4B33185-C6AD-44FD-A4BE-579B074D876C}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -15,6 +17,10 @@ Global
 		{5264C648-4797-44E6-923E-9FF51483079D}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{5264C648-4797-44E6-923E-9FF51483079D}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{5264C648-4797-44E6-923E-9FF51483079D}.Release|Any CPU.Build.0 = Release|Any CPU
+		{B4B33185-C6AD-44FD-A4BE-579B074D876C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B4B33185-C6AD-44FD-A4BE-579B074D876C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B4B33185-C6AD-44FD-A4BE-579B074D876C}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B4B33185-C6AD-44FD-A4BE-579B074D876C}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

@@ -14,7 +14,7 @@ public class BookingRepository : IBookingRepository
     public BookingRepository()
     {
         StartTime = new(9, 0, 0);
-        EndTime = new(17, 0, 0);
+        EndTime = new(16, 59, 0);
     }
 
     public bool IsTimeValid(TimeSpan time)

@@ -1,6 +1,6 @@
 using SettlementApi.DataRepositories;
 
-namespace SettlementApi.Tests.DataRepositories;
+namespace SettlementApi.Tests.UnitTests.DataRepositories;
 
 public class BookingRepositoryTests
 {

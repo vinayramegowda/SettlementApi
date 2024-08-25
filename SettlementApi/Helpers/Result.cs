@@ -2,6 +2,13 @@
 
 public class Result<T>
 {
+    public Result(T value, bool success, string errorMessage = null)
+    {
+        Value = value;
+        Success = success;
+        ErrorMessage = errorMessage;
+    }
+    public Result() { }
     public bool Success { get; set; }
     public T Value { get; set; }
     public string ErrorMessage { get; set; }
